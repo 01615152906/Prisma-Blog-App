@@ -79,6 +79,13 @@ const router = express.Router();
 
 
 
+router.get(
+    "/",
+    PostController.getAllPost
+)
+
+
+
 router.post(
     "/",
     auth(UserROle.USER),
