@@ -83,6 +83,17 @@ router.get(
     "/",
     PostController.getAllPost
 )
+router.get(
+    "/stats",
+   auth(UserROle.ADMIN),
+    PostController.getStats
+)
+
+router.get(
+    "/my-posts",
+    auth(UserROle.ADMIN, UserROle.USER),
+    PostController.getMyPosts
+)
 
 router.get(
     "/:postId",
@@ -91,8 +102,26 @@ router.get(
 
 router.post(
     "/",
-    auth(UserROle.USER),
+    auth(UserROle.USER, UserROle.ADMIN),
     PostController.createPost
 )
 
+
+
+router.patch(
+    "/:postId",
+    auth(UserROle.USER, UserROle.ADMIN),
+    PostController.updatePost
+)
+
+
+router.delete(
+    "/:postId",
+     auth(UserROle.USER, UserROle.ADMIN),
+    PostController.deletePost
+)
+
+
+
 export const postRouter: Router = router;
+
